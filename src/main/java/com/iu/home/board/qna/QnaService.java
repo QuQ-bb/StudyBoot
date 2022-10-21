@@ -40,8 +40,7 @@ public class QnaService {
 		for(MultipartFile f : qnaVO.getFiles()) {
 			
 			if(f.isEmpty()) { 
-				log.info("Exception 발생");
-				throw new Exception();
+				continue;
 			}
 			String fileName = fileManager.saveFile(f, path);
 			QnaFileVO qnaFileVO = new QnaFileVO();
