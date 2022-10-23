@@ -49,7 +49,7 @@ public class QnaService {
 			qnaFileVO.setNum(qnaVO.getNum());
 			qnaMapper.setQnaFile(qnaFileVO);
 		}
-		return 0;
+		return result;
 	}
 	
 	public QnaVO getQnaDetail(QnaVO qnaVO) throws Exception {

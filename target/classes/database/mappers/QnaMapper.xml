@@ -4,20 +4,27 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 <mapper namespace="com.iu.home.board.qna.QnaMapper">
 	<select id="getList" resultType="QnaVO" parameterType="Pager">
-		SELECT * FROM QNA ORDER BY NUM DESC limit #{startRow}, #{perPage}
+		SELECT * 
+		FROM QNA 
+		ORDER BY NUM DESC 
+		limit #{startRow}, #{perPage}
 	</select>
 	
 	<insert id="setQna" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
-		INSERT INTO QNA (NUM, WRITER, TITLE, CONTENTS, HIT, REGDATE, REF, STEP, DEPTH) VALUES (null, #{writer}, #{title}, #{contents}, 0, sysdate(), 0, 0, 0)
+		INSERT INTO QNA (NUM, WRITER, TITLE, CONTENTS, HIT, REGDATE, REF, STEP, DEPTH) 
+		VALUES (null, #{writer}, #{title}, #{contents}, 0, sysdate(), 0, 0, 0)
 	</insert>
 	
 	<insert id="setQnaFile" parameterType="QnaFileVO">
-		INSERT INTO QNAFILE (FILENUM, FILENAME, ORINAME, NUM) VALUES (null, #{fileName}, #{oriName}, #{num})
+		INSERT INTO QNAFILES (FILENUM, FILENAME, ORINAME, NUM) 
+		VALUES (null, #{fileName}, #{oriName}, #{num})
 	</insert>
 	
 	<select id="getQnaDetail" parameterType="QnaVO" resultMap="getQnaDetailResult">
-		SELECT Q.*, F.FILENUM, F.FILENAME, F.ORINAME FROM QNA Q
-		LEFT JOIN QNAFILE F
+		SELECT Q.*, F.FILENUM, F.FILENAME, F.ORINAME 
+		FROM QNA Q
+		LEFT JOIN 
+		QNAFILES F
 		ON Q.NUM = F.NUM
 		WHERE Q.NUM = #{num}
 	</select>

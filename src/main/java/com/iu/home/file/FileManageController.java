@@ -19,8 +19,8 @@ public class FileManageController {
 	public ModelAndView fileDownQna(@PathVariable String path, QnaFileVO qnaFileVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		log.info("Path {}", path);
-		qnaFileVO.setFileName("0ec2d593-8c67-41da-857c-834ffe3955d2_iu2.jpg");
-		qnaFileVO.setOriName("iu2.jpg");
+		qnaFileVO.setFileName("KakaoTalk_20221020_144855641_01.jpg");
+		qnaFileVO.setOriName("KakaoTalk_20221020_144855641_01.jpg");
 		
 		mv.addObject("fileVO", qnaFileVO);
 		mv.addObject("path", path);
