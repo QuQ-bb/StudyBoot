@@ -54,4 +54,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#my file
+application-secret.properties
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,web
