@@ -35,7 +35,7 @@ public class QnaService {
 	@Transactional(rollbackFor = Exception.class)
 	public int setQna(QnaVO qnaVO) throws Exception {
 		int result = qnaMapper.setQna(qnaVO);
-		File file = new File(path);
+		File file = new File(path+"qna");
 		if(!file.exists()) file.mkdirs();
 		for(MultipartFile f : qnaVO.getFiles()) {
 			
