@@ -38,7 +38,8 @@
 		</table>
 		<textarea class="form-control" id="contents">${QnaVO.contents}</textarea>
 		<c:forEach items="${QnaVO.qnaFileVOs}" var="file">
-			<img src="/file/${file.fileName}">	
+			<img src="/file/qna/${file.fileName}">	
+			<a href="/fileDown/qna?fileNum=${file.fileNum}">${file.oriName}</a>
 		</c:forEach>
 	</section>
 	

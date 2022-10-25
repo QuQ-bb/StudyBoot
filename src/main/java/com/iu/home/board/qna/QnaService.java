@@ -55,4 +55,8 @@ public class QnaService {
 	public QnaVO getQnaDetail(QnaVO qnaVO) throws Exception {
 		return qnaMapper.getQnaDetail(qnaVO);
 	}
+	
+	public QnaFileVO getFileDetail(QnaFileVO qnaFileVO)throws Exception{
+		return qnaMapper.getFileDetail(qnaFileVO);
+	}
 }

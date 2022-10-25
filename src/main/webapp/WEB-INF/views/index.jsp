@@ -13,6 +13,16 @@
 	<h1>Index Page</h1>
 	<img src="/images/iu1.jpg">
 	<a href="/qna/list?page=1">QnA</a>
+	<c:if test="${member.id == null}">
+	<a href="/member/add">JOIN</a>
+	<a href="/member/login">Login</a>
+	</c:if>
+	<c:if test="${member.id != null}">
+	<a href="/member/logout">LOGOUT</a>
+	</c:if>
+	
+	응애 ${member.id}님 의 역할은
+	${member.roleVOs[0].roleName}
 	<div>
 		<img src="/file/qna/1ca6475e-37be-47ca-8350-7881491a2408_KakaoTalk_20220827_202803205_09.jpg">
 		<img src="/file/notice/KakaoTalk_20221020_144855641_01.jpg">

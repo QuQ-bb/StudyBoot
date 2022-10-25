@@ -11,6 +11,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,9 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class FileManager extends AbstractView {
+	
+	@Value("${app.download.base}")
+	private String base;
 
 	public String saveFile(MultipartFile multipartFile, String path) throws Exception {
 		String fileName = UUID.randomUUID().toString();
@@ -43,7 +47,7 @@ public class FileManager extends AbstractView {
 		HttpServletResponse response) throws Exception {
 		QnaFileVO qnaFileVO = (QnaFileVO) model.get("fileVO");
 		String path = (String) model.get("path");
-		File file = new File("C:/Sunguk/result/upload/"+path, qnaFileVO.getFileName());
+		File file = new File(base+path, qnaFileVO.getFileName());
 		// 한글처리
 		response.setCharacterEncoding("UTF-8");
 		
