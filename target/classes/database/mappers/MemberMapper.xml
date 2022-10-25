@@ -20,9 +20,10 @@
 			3
 		)
 		
-		INSERT INTO MEMBER_ROLE
+<!-- 		INSERT INTO MEMBER_ROLE
 		VALUES(#{id}, 
-		(SELECT * FROM ROLE WHERE roleName = ''))
+		(SELECT * FROM ROLE WHERE roleName = 'ROLE_MEMBER')
+		) -->
 	</insert>
 	
 	<select id="getLogin" parameterType="MemberVO" resultMap="getLoginResult">
