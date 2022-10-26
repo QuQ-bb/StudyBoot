@@ -11,6 +11,8 @@ public interface MemberMapper {
 	
 	public MemberVO getLogin(MemberVO memberVO)throws Exception;
 	
+	public Long getIdCheck(MemberVO memberVO)throws Exception;
+	
 	
 
 }

@@ -26,6 +26,12 @@
 		) -->
 	</insert>
 	
+	<select id="getIdCheck" parameterType="MemberVO" resultType="Long">
+		SELECT COUNT(ID)
+		FROM MEMBER
+		WHERE ID=#{id}
+	</select>
+	
 	<select id="getLogin" parameterType="MemberVO" resultMap="getLoginResult">
 		SELECT M.*,R.*
 		FROM MEMBER M

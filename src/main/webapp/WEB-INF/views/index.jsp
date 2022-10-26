@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 <c:import url="./temp/boot.jsp"></c:import>
 <link href="/css/test.css" rel="stylesheet">
+<script defer src="/js/test.js"></script>
+<!-- defer : 로딩과 동시에 실행 -->
 </head>
 <body>
 	<h1>Index Page</h1>
@@ -29,5 +31,16 @@
 		<a href="/fileDown/qna?fileNum=2">QnaDown</a>
 		<a href="/fileDown/notice?fileNum=2">NoticeDown</a>
 	</div>
+<button id="btn" type="button">CLICK</button>
+
+<button class="buttons">BTN1</button>
+<button class="buttons">BTN2</button>
+<button class="buttons">BTN3</button>
+
+<div id="test">
+
+	
+</div>
+
 </body>
 </html>
