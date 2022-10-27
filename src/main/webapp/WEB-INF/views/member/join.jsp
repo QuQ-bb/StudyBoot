@@ -27,11 +27,10 @@
 			      <input type="text" name="id" class="form-control" id="id" placeholder="ID 입력">
 				  <div id="check_id" ></div>
 			    </div>
-					
 			  </div>
-			  <div>
+			  <!-- <div>
 				<button id="idCheck">idCheck</button>
-			  </div>
+			  </div> -->
 			  <div class="row mb-3">
 			    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
 			    <div class="col-sm-10">

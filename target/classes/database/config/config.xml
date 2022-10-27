@@ -13,5 +13,7 @@
 		
 		<typeAlias type="java.util.List" alias="List"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
+		<typeAlias type="java.lang.Integer" alias="Integer"/>
+		
 	</typeAliases>
 </configuration>

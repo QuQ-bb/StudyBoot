@@ -38,20 +38,23 @@ let results = [false,false,false,false,false];
 
 //ID Check
 $("#id").blur(function(){
-    let result = nullCheck($("#id").val(), "#check_id", "아이디")
+    let id =$("#id").val();
+    let result = nullCheck(id, "#check_id", "아이디")
     results[0]=result
-    // console.log("result id: ", result)
-
-    // if(result){
-    //     $("#check_id").html("");
-    // }else{
-    //     $("#check_id").html("아이디를 입력해주세요.")
-    // }
+    //단 id가 비어있지않을 때 실행
+    if(id != ""){
+        $.get("./idCheck?id="+id,function(data){
+            console.log("Data : ",data);
+            if(data === 0){
+                $("#check_id").html("사용가능한 ID")
+            }else{
+                $("#check_id").html("이미 사용중인 ID")
+            }
+        });
+    }
 });
 
-$("#idCheck").click(function(){
-    
-})
+
 
 //pw Check
 // $("#pw").blur(function(){

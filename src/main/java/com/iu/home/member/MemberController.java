@@ -20,7 +20,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@PostMapping("idCheck")
+	@GetMapping("idCheck")
 	@ResponseBody
 	public Long getIdCheck(MemberVO memberVO)throws Exception{
 		Long result = memberService.getIdCheck(memberVO);
