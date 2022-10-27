@@ -19,37 +19,38 @@
 	<h1>Board Write Page</h1>
 	
 	<section class="container" style="width: 60%;">
-		<form action="/qna/write" method="post" enctype="multipart/form-data">
+		<form action="update" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="num" value="${QnaVO.num}">
 			<div class="input-group mb-3">
 				<span class="input-group-text">Writer</span>
-				<input type="text" class="form-control" id="writer" name="writer" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input readonly type="text" class="form-control" id="writer" name="writer" value="${QnaVO.writer}" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">Title</span>
-				<input type="text" class="form-control" id="title" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input type="text" class="form-control" id="title" name="title" value="${QnaVO.title}" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">Contents</span>
-				<textarea class="form-control" id="contents" name="contents"></textarea>
+				<textarea class="form-control" id="contents" name="contents">${QnaVO.contents}</textarea>
 			</div>
-	
-
+		
+		
 			<div class="mb-3" id="add">
+			<c:forEach items="${QnaVO.qnaFileVOs}" var="file">
+			<%-- 	<img src="/file/qna/${file.fileName}">	 --%>
+				<p>여기 파일있어요 ${file.oriName}
+				<button type="button" class="deleteFile" data-fileNum="${file.fileNum}">DeleteFile</button>
+				</p>
+			</c:forEach>
 			</div>
+			
 			<div class="mb-3" id="btns">
 				<button type="button" id="addbtn">FileAdd</button>
 			</div>
-<!-- 			<div class="input-group mb-3">
-				<input type="file" class="form-control" name="files" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			</div>
 
-			<div class="input-group mb-3">
-				<input type="file" class="form-control" name="files" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			</div> -->
-
-			<button class="btn btn-primary" type="submit">WRITE</button>
+			<button class="btn btn-primary" type="submit">UPDATE</button>
 		</form>
 	</section>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -60,6 +61,7 @@
 				height: 250
 			});
 		});
+	/* 	$('#contents').summernote('code','${QnaVO.contents}') */
 	</script>
 </body>
 </html>

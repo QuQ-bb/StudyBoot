@@ -51,4 +51,18 @@
 		FROM QNAFILES
 		WHERE FILENUM =#{fileNum}
 	</select>
+	
+	<update id="setQnaUpdate" parameterType="QnaVO">
+	UPDATE QNA
+	SET TITLE=#{title},
+		CONTENTS =#{contents}
+	WHERE NUM =#{num}	
+	</update>
+	
+	<!-- 글수정시 파일삭제 -->
+	<delete id="setFileDelete" parameterType="QnaFileVO">
+	DELETE FROM QNAFILES
+	WHERE FILENUM=#{fileNum}
+	</delete>
+	
 </mapper>

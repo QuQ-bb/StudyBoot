@@ -41,6 +41,8 @@
 			<img src="/file/qna/${file.fileName}">	
 			<a href="/fileDown/qna?fileNum=${file.fileNum}">${file.oriName}</a>
 		</c:forEach>
+		
+		<button type="button" onClick="location.href='./update?num=${QnaVO.num}'">UPDATE</button>
 	</section>
 	
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>

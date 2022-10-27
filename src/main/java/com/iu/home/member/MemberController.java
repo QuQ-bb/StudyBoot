@@ -58,6 +58,8 @@ public class MemberController {
 	}
 	
 	
+	
+	
 	@GetMapping("/logout")
 	public String logout(HttpSession session)throws Exception{
 		session.invalidate();

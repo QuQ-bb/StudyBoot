@@ -47,8 +47,10 @@ $("#id").blur(function(){
             console.log("Data : ",data);
             if(data === 0){
                 $("#check_id").html("사용가능한 ID")
+                results[0]=true;
             }else{
                 $("#check_id").html("이미 사용중인 ID")
+                results[0]=false;
             }
         });
     }

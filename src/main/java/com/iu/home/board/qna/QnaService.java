@@ -35,7 +35,7 @@ public class QnaService {
 	@Transactional(rollbackFor = Exception.class)
 	public int setQna(QnaVO qnaVO) throws Exception {
 		int result = qnaMapper.setQna(qnaVO);
-		File file = new File(path+"qna");
+		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
 		for(MultipartFile f : qnaVO.getFiles()) {
 			
@@ -58,5 +58,24 @@ public class QnaService {
 	
 	public QnaFileVO getFileDetail(QnaFileVO qnaFileVO)throws Exception{
 		return qnaMapper.getFileDetail(qnaFileVO);
+	}
+	
+	//글수정
+	public int setQnaUpdate(QnaVO qnaVO)throws Exception{
+		return qnaMapper.setQnaUpdate(qnaVO);
+	}
+	//글 수정시 파일 삭제
+	public int setFileDelete(QnaFileVO qnaFileVO)throws Exception{
+		qnaFileVO = qnaMapper.getFileDetail(qnaFileVO);
+		
+		int result = qnaMapper.setFileDelete(qnaFileVO);
+
+		if(result > 0) {
+//			File file = new File(path, qnaFileVO.getFileName());
+//			file.delete();
+			
+			Boolean check = fileManager.deleteFile(qnaFileVO, path);
+		}
+		return result;
 	}
 }

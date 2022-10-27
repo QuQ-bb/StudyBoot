@@ -27,6 +27,8 @@ public class FileManager extends AbstractView {
 	
 	@Value("${app.download.base}")
 	private String base;
+	@Value("${app.download.base}")
+	private String delete;
 
 	public String saveFile(MultipartFile multipartFile, String path) throws Exception {
 		String fileName = UUID.randomUUID().toString();
@@ -40,6 +42,12 @@ public class FileManager extends AbstractView {
 //		FileCopyUtils.copy(multipartFile.getBytes(),file);
 		multipartFile.transferTo(file);
 		return sb.toString();
+	}
+	
+	public boolean deleteFile(QnaFileVO qnaFileVO,String path)throws Exception{
+		File file = new File(path, qnaFileVO.getFileName());
+		
+		return file.delete();
 	}
 
 	@Override
