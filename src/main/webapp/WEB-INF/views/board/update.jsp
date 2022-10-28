@@ -37,7 +37,7 @@
 			</div>
 		
 		
-			<div class="mb-3" id="add">
+			<div class="mb-3" id="add" data-file-size=${QnaVO.qnaFileVOs.size()}>
 			<c:forEach items="${QnaVO.qnaFileVOs}" var="file">
 			<%-- 	<img src="/file/qna/${file.fileName}">	 --%>
 				<p>여기 파일있어요 ${file.oriName}
@@ -61,6 +61,8 @@
 				height: 250
 			});
 		});
+		
+/* 		setCount(${QnaVO.qnaFileVOs.size()}) */
 	/* 	$('#contents').summernote('code','${QnaVO.contents}') */
 	</script>
 </body>

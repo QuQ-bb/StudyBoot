@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,26 +14,33 @@
 	}
 </style>
 <title>Insert title here</title>
-<script defer type="text/javascript" src="/js/fileManager.js"></script>
+<!-- <script defer type="text/javascript" src="/js/fileManager.js"></script> -->
 </head>
 <body>
 	<h1>Board Write Page</h1>
 	
 	<section class="container" style="width: 60%;">
-		<form action="/qna/write" method="post" enctype="multipart/form-data">
+		<form:form modelAttribute="qnaVO" method="post" enctype="multipart/form-data">
+		<%-- <form action="/qna/write" method="post" enctype="multipart/form-data"> --%>
 			<div class="input-group mb-3">
 				<span class="input-group-text">Writer</span>
-				<input type="text" class="form-control" id="writer" name="writer" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<form:input path="writer" cssClass="form-control" id="writer"/>
+				<form:errors path="writer"></form:errors>
+				<!-- <input type="text" class="form-control" id="writer" name="writer" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"> -->
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">Title</span>
-				<input type="text" class="form-control" id="title" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<form:input path="title" cssClass="form-control" id="title"/>
+				<form:errors path="title"></form:errors>
+				<!-- <input type="text" class="form-control" id="title" name="title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"> -->
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">Contents</span>
-				<textarea class="form-control" id="contents" name="contents"></textarea>
+				<form:textarea path="contents" cssClass="form-control" id="contents"/>
+				<form:errors path="contents"></form:errors>
+				<!-- <textarea class="form-control" id="contents" name="contents"></textarea> -->
 			</div>
 	
 
@@ -50,7 +58,8 @@
 			</div> -->
 
 			<button class="btn btn-primary" type="submit">WRITE</button>
-		</form>
+		<%-- </form> --%>
+		</form:form>
 	</section>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
