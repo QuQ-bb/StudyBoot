@@ -19,7 +19,7 @@ public class MemberVO {
 	@NotBlank(message ="이이이잉 ID 얼른써줘잉!!!")
 	private String id;
 	@NotBlank
-	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*\\\\W)(?=\\\\S+$).{6,12}")
+//	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*\\\\W)(?=\\\\S+$).{6,12}")
 	private String pw;
 	private String pwCheck;
 	@NotBlank

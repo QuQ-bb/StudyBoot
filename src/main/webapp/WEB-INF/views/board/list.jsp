@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <c:import url="../temp/boot.jsp"></c:import>
 <title>Insert title here</title>
+<c:import url="../temp/boot.jsp"></c:import>
 </head>
 <body>
 	<table class="table table-hover">

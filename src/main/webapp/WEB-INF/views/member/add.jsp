@@ -27,9 +27,11 @@
 			    <label for="inputUserName" class="col-sm-2 col-form-label">ID</label>
 			    <div class="col-sm-10">
 			      <form:input path="id" cssClass="form-control" id="id"/>
-					 <form:errors path="id"></form:errors> <!--백엔드에서 검증이 끝나야지 결과값을 출력해줌  -->
+					 
 			     <!--  <input type="text" name="id" class="form-control" id="id" placeholder="ID 입력"> -->
-					<div id="check_id" ></div>
+					<div id="check_id" >
+					<form:errors path="id"></form:errors> <!--백엔드에서 검증이 끝나야지 결과값을 출력해줌  -->
+					</div>
 			    </div>
 			  </div>
 			  <!-- <div>
@@ -62,7 +64,9 @@
 			    	<form:input path="name" cssClass="form-control" id="name"/>
 			    	<form:errors path="name" ></form:errors>
 			   <!--    <input type="text" name="name" class="form-control" id="name" placeholder="이름 입력"> -->
-				  <div id="check_name"></div>
+				  <div id="check_name">
+				  	${name}
+				  </div>
 			    </div>
 			  </div>
 			  
