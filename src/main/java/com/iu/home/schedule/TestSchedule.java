@@ -18,18 +18,18 @@ public class TestSchedule {
 	@Autowired
 	private MemberMapper memberMapper;
 	
-	@Scheduled(cron ="30 * * * * *")
-	public void cron()throws Exception {
-		log.info("Cron 매초 실행");
-		log.info(Calendar.getInstance().getTime().toString());
-		MemberVO memberVO = new MemberVO();
-		memberVO.setId("AutoId"+Calendar.getInstance().getTime().toString());
-		memberVO.setPw("123");
-		memberVO.setName("Name");
-		memberVO.setEmail("Email");
-		log.info("Result : {}", memberMapper.setJoin(memberVO));
-		
-	}
+//	@Scheduled(cron ="30 * * * * *")
+//	public void cron()throws Exception {
+//		log.info("Cron 매초 실행");
+//		log.info(Calendar.getInstance().getTime().toString());
+//		MemberVO memberVO = new MemberVO();
+//		memberVO.setId("AutoId"+Calendar.getInstance().getTime().toString());
+//		memberVO.setPw("123");
+//		memberVO.setName("Name");
+//		memberVO.setEmail("Email");
+//		log.info("Result : {}", memberMapper.setJoin(memberVO));
+//		
+//	}
 	
 //	@Scheduled(fixedRate = 3000,initialDelayString = "1000") //단위가 ms
 	public void ts1() {

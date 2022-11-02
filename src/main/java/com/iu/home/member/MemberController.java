@@ -86,12 +86,12 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	@PostMapping("login")
-	public String getLogin(MemberVO memberVO,HttpSession session)throws Exception{
-		memberVO = memberService.getLogin(memberVO);
-		session.setAttribute("member", memberVO);
-		return "redirect:/";
-	}
+//	@PostMapping("login")
+//	public String getLogin(MemberVO memberVO,HttpSession session)throws Exception{
+//		memberVO = memberService.getLogin(memberVO);
+//		session.setAttribute("member", memberVO);
+//		return "redirect:/";
+//	}
 	
 	
 	
