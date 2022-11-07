@@ -95,7 +95,6 @@
 			    </div>
 			  </div>
 			  
-			  
 			  <div class="row justify-content-end">
 			  	<div >
 			  		<button type="submit" id="joinButton" class="btn btn-primary mb-3">Sign in</button>

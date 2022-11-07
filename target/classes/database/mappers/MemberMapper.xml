@@ -32,7 +32,7 @@
 		WHERE ID=#{id}
 	</select>
 	
-	<select id="getLogin" parameterType="MemberVO" resultMap="getLoginResult">
+	<select id="getLogin" parameterType="String" resultMap="getLoginResult">
 		SELECT M.*,R.*
 		FROM MEMBER M
 			JOIN
@@ -41,10 +41,11 @@
 			JOIN
 			ROLE R
 			ON MR.NUM=R.NUM
-		WHERE M.ID=#{id} AND M.PW=#{pw}	
+		WHERE M.ID=#{username} 
 	</select>
 	<resultMap type="MemberVO" id="getLoginResult">
 		<id column="id" property="id"/>
+		<result column="pw" property="pw"/>
 		<result column="name" property="name"/> 
 		<result column="email" property="email"/> 
 		<collection property="roleVOs" javaType="List" ofType="RoleVO">

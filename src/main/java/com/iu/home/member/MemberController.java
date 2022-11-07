@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -82,24 +83,32 @@ public class MemberController {
 	}
 	
 	@GetMapping("login")
-	public String getLogin()throws Exception{
+	public String getLogin(@RequestParam(defaultValue = "false", required = false) boolean error , String message,Model model)throws Exception{ //reference타입 Boolean도 사용가능(reference타입 기본값은 null이기대문에)
+//		if(error) {
+//			model.addAttribute("msg", "ID 또는 PW를 확인하세요");
+//		}
+		//Controller에서 받아서 jsp로 다시 보내도 됨
+	
 		return "member/login";
 	}
 	
-//	@PostMapping("login")
-//	public String getLogin(MemberVO memberVO,HttpSession session)throws Exception{
-//		memberVO = memberService.getLogin(memberVO);
-//		session.setAttribute("member", memberVO);
-//		return "redirect:/";
-//	}
-	
-	
-	
-	
-	@GetMapping("/logout")
-	public String logout(HttpSession session)throws Exception{
-		session.invalidate();
-		return "redirect:/member/login";
+	@PostMapping("login")
+	public String getLogin()throws Exception{
+		log.info("=====Login Post===========");
+		return "member/login";
 	}
+	
+	@GetMapping("mypage")
+	public String getMypage()throws Exception{
+		return "member/mypage";
+	}
+	
+	
+//	@GetMapping("/logout")
+//	public String logout(HttpSession session)throws Exception{
+//		log.info("==== 내가 만든 logout메서드=====");
+//		session.invalidate();
+//		return "redirect:/member/login";
+//	}
 
 }
