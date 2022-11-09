@@ -35,20 +35,20 @@ public class QnaService {
 	@Transactional(rollbackFor = Exception.class)
 	public int setQna(QnaVO qnaVO) throws Exception {
 		int result = qnaMapper.setQna(qnaVO);
-		File file = new File(path);
-		if(!file.exists()) file.mkdirs();
-		for(MultipartFile f : qnaVO.getFiles()) {
-			
-			if(f.isEmpty()) { 
-				continue;
-			}
-			String fileName = fileManager.saveFile(f, path);
-			QnaFileVO qnaFileVO = new QnaFileVO();
-			qnaFileVO.setFileName(fileName);
-			qnaFileVO.setOriName(f.getOriginalFilename());
-			qnaFileVO.setNum(qnaVO.getNum());
-			qnaMapper.setQnaFile(qnaFileVO);
-		}
+//		File file = new File(path);
+//		if(!file.exists()) file.mkdirs();
+//		for(MultipartFile f : qnaVO.getFiles()) {
+//			
+//			if(f.isEmpty()) { 
+//				continue;
+//			}
+//			String fileName = fileManager.saveFile(f, path);
+//			QnaFileVO qnaFileVO = new QnaFileVO();
+//			qnaFileVO.setFileName(fileName);
+//			qnaFileVO.setOriName(f.getOriginalFilename());
+//			qnaFileVO.setNum(qnaVO.getNum());
+//			qnaMapper.setQnaFile(qnaFileVO);
+//		}
 		return result;
 	}
 	

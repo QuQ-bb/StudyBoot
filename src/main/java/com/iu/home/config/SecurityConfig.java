@@ -1,6 +1,9 @@
 package com.iu.home.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,7 +12,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.iu.home.member.MemberSecurityService;
+import com.iu.home.member.MemberSocialService;
 import com.iu.home.member.security.LoginFail;
 import com.iu.home.member.security.LoginSuccess;
 import com.iu.home.member.security.LogoutCoustom;
@@ -21,15 +29,16 @@ public class SecurityConfig {
 	
 		@Autowired
 		private LoginSuccess loginSuccess;
-		
 		@Autowired
 		private LoginFail loginFail;
-		
 		@Autowired
 		private LogoutCoustom logoutCoustom;
-		
 		@Autowired
 		private LogoutSuccessCustom logoutSuccessCustom;
+		@Autowired
+		private MemberSecurityService memberSecurityService;
+		@Autowired
+		private MemberSocialService memberSocialService;
 	
 	@Bean
 	//public을 선언하면 default로 바꾸라는 메세지 출력
@@ -47,16 +56,18 @@ public class SecurityConfig {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity httpSecurity)throws Exception {
 		httpSecurity
+//					.csrf()
+//					.disable()
 					.cors()
+					.configurationSource(this.corsConfigurationSource())	//자기 클래스 내에 만든 메서드를 사용하려면 @Bean을 사용해서 @Autowired사용해도되고 메서드 자체를 불러와도 됨
 					.and()
-					.csrf()
-					.disable()
 				.authorizeRequests()
 //					.antMatchers("/").permitAll()
 					.antMatchers("/admin").hasRole("ADMIN")
 					.antMatchers("/manager").hasAnyRole("ADMIN","MANAGER")
 					.antMatchers("/qna/list").permitAll()	//아래꺼랑 순서 되게 중요함 위치변경하면 안됨
-					.antMatchers("/qna/**").hasRole("MEMBER")
+//					.antMatchers("/qna/**").hasRole("MEMBER")
+					.antMatchers("/qna/**").permitAll()
 					.anyRequest().permitAll()
 					.and()
 				.formLogin()
@@ -82,8 +93,13 @@ public class SecurityConfig {
 				.rememberMe()	//rememberMe설정
 					.rememberMeParameter("rememberMe")	//파라미터명
 					.tokenValiditySeconds(300)	//토큰(로그인유지)유지시간 언제까지 유지할것인지 단위는 초
-					.key("rememberMe")
-					
+					.key("rememberMe")			//인증받은 사용자의 정보로 Token 생성시 필요, 필수값
+					.userDetailsService(memberSecurityService) //인증 절차를 실행할 UserDetailService, 필수
+					.authenticationSuccessHandler(loginSuccess) //Login 성공 Handler
+					.and()
+				.oauth2Login()//social login 설정
+					.userInfoEndpoint()
+					.userService(memberSocialService)
 					
 					;
 		
@@ -96,6 +112,17 @@ public class SecurityConfig {
 	@Bean
 	public PasswordEncoder getEncoder() { //평문을 암호화시켜주는 클래스
 		return new BCryptPasswordEncoder(); 
+	}
+	
+	
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration  = new CorsConfiguration();
+		configuration.setAllowedOrigins(Arrays.asList("http://172.25.176.1:5500","*"));	// asList()안에 들어간 타입으로 만듬
+		configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
 	}
 	
 

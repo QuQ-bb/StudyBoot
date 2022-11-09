@@ -26,7 +26,16 @@
 	응애<h3><spring:message code="welcome" arguments="${user.id}" ></spring:message> </h3>
 	<h3><spring:message code="welcome2" arguments="${user.id},${user.name}" argumentSeparator="," ></spring:message> </h3>
 	<a href="/member/mypage">MYPAGE</a>
-	<a href="/member/logout">LOGOUT</a>
+	<a href="#" id="logout">LOGOUT</a>
+	<button type="button" id="kakao">KAKAO</button>
+	<form id="outForm" action="/member/logout" method="post">
+	<sec:csrfInput/>
+	<button>LOGOUT</button>
+	<!-- <a href="/member/logout">LOGOUT</a> -->
+	</form>
+	
+	<a href="/member/delete">탈퇴</a>
+	
 <%-- 	  역할은 ${member.roleVOs[0].roleName} --%>
 	</sec:authorize>
 	  
@@ -34,6 +43,8 @@
 	<sec:authorize access="!isAuthenticated()">
 	<a href="/member/add">JOIN</a>
 	<a href="/member/login">Login</a>
+	<a href="/oauth2/authorization/kakao">KAKAO LOGIN</a>
+	<!-- 루트는 우리 루트인데 원래는 contorller로 가야하는데 oauth-client api가 앞에서 먼저 가로채감 -->
 	</sec:authorize>
 	
 	
@@ -68,6 +79,16 @@
 <h1>${h}</h1>
 <h1>${h}</h1>
 <h1>${h}</h1>
-
+<script type="text/javascript">
+	$("#logout").click(function(){
+		$("#outForm").submit();
+	})
+	$("#kakao").click(function(){
+		$.get("https://developers.kakao.com/logout",function(){
+			location.reload();
+			/* console.log("") */
+		})
+	})
+</script>
 </body>
 </html>

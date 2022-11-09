@@ -19,6 +19,7 @@
 		
 		
 			<form action="login" method="post" id="frm" >
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			  <div class="mb-3">
 			    <label for="id" class="form-label">Enter ID</label>
 			    <input type="text" name="id" value="${cookie.userId.value}" class="form-control" id="userName" aria-describedby="emailHelp">
@@ -29,6 +30,10 @@
 			  </div>
 				  <div>
 				  	<label class="form-check=label">ID기억하기</label>
+				  	<input type="checkbox" name="rememberId" class="form-check-input">
+				  </div>
+				  <div>
+				  	<label class="form-check=label">rememberMe</label>
 				  	<input type="checkbox" name="rememberMe" class="form-check-input">
 				  </div>
 			  <button type="submit" class="btn btn-primary" id="btn">Submit</button>

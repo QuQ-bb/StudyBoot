@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -15,11 +16,12 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import lombok.Data;
 
 @Data
-public class MemberVO implements UserDetails{
+public class MemberVO implements UserDetails,OAuth2User{
 	
 	@NotBlank(message ="이이이잉 ID 얼른써줘잉!!!")
 	private String id;
@@ -41,6 +43,13 @@ public class MemberVO implements UserDetails{
 	private	boolean enabled;
 	
 	private List<RoleVO> roleVOs;
+	
+	//==========Social Login===========
+	//kakao,naver,google
+	private String social;
+	
+	//OAuth2User , Token등 정보 저장
+	private Map<String, Object> attributes;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {//?-어떤것(any) extends-상속 GrantedAuthority-이것을 상속받은 애들은 된다
@@ -101,6 +110,12 @@ public class MemberVO implements UserDetails{
 	// false : 계정 비활성화(계정 사용 불가, 로그인 불가)
 	public boolean isEnabled() {
 		return true;
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		// TODO Auto-generated method stub
+		return this.attributes;
 	}
 
 }

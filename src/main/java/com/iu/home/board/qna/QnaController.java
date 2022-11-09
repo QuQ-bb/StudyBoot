@@ -33,6 +33,14 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 
+	@GetMapping("hack")
+	@ResponseBody
+	public int hack(QnaVO qnaVO)throws Exception {
+		qnaService.setQna(qnaVO);
+		
+		return 1;
+	}
+	
 	@GetMapping("list")
 	public ModelAndView getList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();

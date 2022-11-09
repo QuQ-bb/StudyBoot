@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,7 @@
 	
 	<section class="container" style="width: 60%;">
 		<form:form modelAttribute="qnaVO" method="post" enctype="multipart/form-data">
+		<sec:csrfInput/>
 		<%-- <form action="/qna/write" method="post" enctype="multipart/form-data"> --%>
 			<div class="input-group mb-3">
 				<span class="input-group-text">Writer</span>
