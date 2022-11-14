@@ -44,8 +44,8 @@ public class MemberController {
 		MemberVO memberVO = (MemberVO)authentication.getPrincipal();
 		int result = memberService.setDelete(memberVO);
 		
-		if( result> 0) {
-			mv.setViewName("redirect:./logout");
+		if(result > 0) {
+			mv.setViewName("redirect:/member/logout");
 		}else {
 			//탈퇴 실패
 		}

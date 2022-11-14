@@ -68,6 +68,7 @@
 <button class="buttons">BTN1</button>
 <button class="buttons">BTN2</button>
 <button class="buttons">BTN3</button>
+<a href="./location/current">지도</a>
 
 <div id="test">
 

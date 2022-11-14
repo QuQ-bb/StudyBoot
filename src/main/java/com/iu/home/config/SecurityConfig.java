@@ -56,8 +56,8 @@ public class SecurityConfig {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity httpSecurity)throws Exception {
 		httpSecurity
-//					.csrf()
-//					.disable()
+					.csrf()
+					.disable()
 					.cors()
 					.configurationSource(this.corsConfigurationSource())	//자기 클래스 내에 만든 메서드를 사용하려면 @Bean을 사용해서 @Autowired사용해도되고 메서드 자체를 불러와도 됨
 					.and()

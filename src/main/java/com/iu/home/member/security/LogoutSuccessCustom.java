@@ -40,6 +40,7 @@ public class LogoutSuccessCustom implements LogoutSuccessHandler{
 			if(social != null) {
 					if(social.equals("kakao")) {
 //						try {
+							log.info("=======Logout Success시에만 실행 ========");
 							response.sendRedirect("https://kauth.kakao.com/oauth/logout?client_id="+restApi+"&logout_redirect_uri="+rediectUrl);
 //							response.sendRedirect("https://developers.kakao.com/logout");
 //							RestTemplate restTemplate = new RestTemplate();
@@ -62,7 +63,6 @@ public class LogoutSuccessCustom implements LogoutSuccessHandler{
 					}else {
 					}
 			}else {
-				log.info("=======Logout Success시에만 실행 ========");
 				response.sendRedirect("/");
 				
 			}

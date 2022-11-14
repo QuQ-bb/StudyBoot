@@ -1,5 +1,8 @@
 package com.iu.home.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -12,8 +15,11 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Mono;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -27,6 +33,32 @@ public class MemberService {
 	private String adiminKey;
 	
 	public int setDelete(MemberVO memberVO)throws Exception{
+		//webClient방식으로 구현
+		
+		//1.webClient 생성
+		WebClient webClient = WebClient.builder()
+									   .baseUrl("https://kapi.kakao.com/")	//주소를 통으로 넣어도 괜찮음
+									   .build();
+		
+		//2. parameter
+		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();// 타입이 다르면 Object
+		map.add("target_id_type", "user_id");
+		map.add("target_id", memberVO.getId());
+			Mono<String> res = webClient.post()
+									    .uri("v1/user/unlink")
+								  	    .body(BodyInserters.fromFormData(map))
+									    .header("Authorization","KakaoAK " + adiminKey)
+									    .header("Content-Type","application/x-www-form-urlencoded")
+									    .retrieve()
+									    .bodyToMono(String.class);	//어떤 타입으로 받는지 그거에 대한 타입.class
+									    
+			log.info("WebClientResult =>",res);		
+			
+			return 1;
+	}
+	
+	public int setDelete2(MemberVO memberVO)throws Exception{
+		//restTemplate방식으로 구현
 		int result =0;
 		RestTemplate restTemplate = new RestTemplate();
 		
